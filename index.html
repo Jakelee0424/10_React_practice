@@ -13,24 +13,49 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 
-
     <script type="text/babel" >
-        
+
         const root = document.getElementById("root")
+        let counter = 0;
+
+        function countUp(){
+            counter = counter + 1;
+            render()
+        }
+
+        function render(){
+            ReactDOM.render(<Container/>, root)
+        }
+
+        function Container(){
+            return(
+                <div> 
+                    <h3>Total clicks : {counter}</h3>
+                    <button onClick={countUp}> Click me</button>
+                </div>  
+            )
+        }
+
+        render()
+        // react는 렌더링된 부분만 업데이트  
+        //  <->  vanilla.js는 요소 전체가 없데이트됨 
+
+        // 즉, react에서는 인터랙티브한 어플리케이션 생성이 가능
+
         
-        // ----------------- Babel 방식
-        const Title = () => (
-                    <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                        Hello I'm a title
-                    </h3>
-                    )
 
-        const Button = () => (
-                    <button onClick={ ()=> console.log("i'm clicked")}>
-                        Click me
-                    </button>
+        // ----------------- Babel 방식(JSX)
+        //const Title = () => (
+       //             <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        //                Hello I'm a title
+        //            </h3>
+        //            )
 
-                    )
+     //   const Button = () => (
+     //               <button onClick={ ()=> console.log("i'm clicked")}>
+     //                   Click me
+     //               </button>
+//                    )
               
 
         // ------------------ 리액트 방식
@@ -54,16 +79,14 @@
             [Title, btn]
             ) */
 
-        const Container = () => ( 
+        /* const Container = () => ( 
                         <div> 
                             <Title/> 
                             <Button/> 
                         </div>    
                         // 함수형으로 만든 요소를 태그 형식으로 불러와서 사용
                         // ** 모두 대문자로 시작해야함
-                        )
-
-        ReactDOM.render(<Container/>, root)
+                        ) */
 
         // function() 형태로 컴포넌트를 만들 경우 return 구문이 반드시 필요
         // 화살표 함수일 경우 return 구문 필요없음
